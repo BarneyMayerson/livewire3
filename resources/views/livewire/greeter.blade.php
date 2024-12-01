@@ -1,15 +1,21 @@
 <div>
-    <div>
-        Hello {{ $name }}!
-    </div>
     <form
-        wire:submit="changeName(document.querySelector('#newName').value)"
+        wire:submit="changeName()"
     >
         <div class="mt-4">
+            <select
+                wire:model.fill="greeting"
+                class="bg-gray-700 rounded p-4 text-white w-52" 
+            >
+                <option value="Hello">Hello</option>
+                <option value="Hi">Hi</option>
+                <option value="Hey">Hey</option>
+                <option value="Howdy">Howdy</option>
+            </select>
             <input
-                id="newName"
+                wire:model="name"
                 type="text" 
-                class="block bg-gray-700 rounded w-full p-4 text-white" 
+                class="bg-gray-700 rounded p-4 ml-2 text-white" 
             >
         </div>
         <div class="mt-2">
@@ -20,4 +26,9 @@
             </button>
         </div>
     </form>
+    @if ($name !== '')
+    <div class=mt-5>
+        {{ $greeting}} {{ $name }}!
+    </div>
+    @endif
 </div>

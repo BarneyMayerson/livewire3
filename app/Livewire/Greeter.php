@@ -10,7 +10,21 @@ class Greeter extends Component
 
     public string $greeting = '';
 
-    public function changeName() {}
+    public string $greetingMessage = '';
+
+    public function changeGreeting()
+    {
+        $this->reset('greetingMessage');
+        $this->validate();
+        $this->greetingMessage = "{$this->greeting}, {$this->name}!";
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|min:2',
+        ];
+    }
 
     public function render()
     {

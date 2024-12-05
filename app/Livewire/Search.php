@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Article;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -12,7 +11,9 @@ class Search extends Component
     #[Validate('required')]
     public string $searchText = '';
 
-    public Collection $results;
+    public $results = [];
+
+    public string $placeholder;
 
     public function updatedSearchText(string $value)
     {

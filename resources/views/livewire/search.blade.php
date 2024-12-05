@@ -5,7 +5,7 @@
                 wire:model.live.debounce="searchText"
                 type="text" 
                 class="bg-gray-700 w-3/4 rounded p-4 text-white" 
-                placeholder="type something to search"
+                placeholder="{{ $placeholder }}"
             >
             <button
                 wire:click.prevent="clear()"
@@ -17,14 +17,6 @@
             </button>
         </div>
     </form>
-    @if ($results)
-        <div class="mt-8">
-            @foreach ($results as $result)
-                <div class="pt-2">
-                <a href="/articles/{{$result->id}}">{{$result->title}}</a>
-                </div>
-            @endforeach
-        </div>    
-    @endif
+    <livewire:search-results :results="$results" :show="!empty($searchText)">  
 </div>
 

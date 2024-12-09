@@ -1,4 +1,13 @@
-<div class="container mx-auto mb-4">
+<div class="container mx-auto">
+    <div class="mb-6">
+        <a 
+            href="/dashboard/articles/create" 
+            class="text-gray-200 bg-blue-700 hover:bg-blue-800 px-3 py-2 rounded-sm transition-colors"
+            wire:navigate
+        >
+            Create Article
+        </a>
+    </div>
     <table class="w-full">
         <thead class="uppercase text-xs text-gray-400 bg-gray-700">
             <tr>
@@ -15,7 +24,14 @@
                 <td class="px-6 py-2">
                     {{ $article->title }}
                 </td>
-                <td class="px-6 py-2 flex justify-center">
+                <td class="px-6 py-2 flex justify-center space-x-2">
+                    <a 
+                        href="/dashboard/articles/{{ $article->id }}/edit"
+                        wire:navigate
+                        class="text-gray-200 bg-blue-700 hover:bg-blue-800 transition-colors rounded-sm px-3 py-1"
+                    >
+                        Edit
+                    </a>
                     <button 
                         wire:click="delete({{ $article->id }})"
                         wire:confirm="Are you sure you want to delete this article?"

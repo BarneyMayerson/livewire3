@@ -30,6 +30,51 @@
                 @enderror
             </div>
         </div>
+        <div class="mb-5">
+            <label class="flex items-center">
+                <input 
+                    type="checkbox" 
+                    wire:model.boolean="form.published"
+                    name="published"
+                    class="mr-2"
+                >
+                Published
+            </label>
+        </div>
+        <div class="mb-5">
+            <div>
+                <div class="mb-2">Notification Options</div>
+                <div class="flex gap-6">
+                    <label class="flex items-center">
+                        <input 
+                            type="radio" 
+                            class="mr-2" 
+                            value="email" 
+                            wire:model="form.notification"
+                        >
+                        Email
+                    </label>
+                    <label class="flex items-center">
+                        <input 
+                            type="radio" 
+                            class="mr-2" 
+                            value="sms" 
+                            wire:model="form.notification"
+                        >
+                        SMS
+                    </label>
+                    <label class="flex items-center">
+                        <input 
+                            type="radio" 
+                            class="mr-2" 
+                            value="none" 
+                            wire:model="form.notification"
+                        >
+                        None
+                    </label>
+                </div>
+            </div>
+        </div>
         <div>
             <button
                 type="submit"

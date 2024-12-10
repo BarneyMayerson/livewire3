@@ -16,6 +16,7 @@ class Article extends Model
     {
         return [
             'published' => 'boolean',
+            'notifications' => 'array',
         ];
     }
 }

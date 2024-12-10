@@ -83,7 +83,11 @@
         <div>
             <button
                 type="submit"
-                class="text-gray-200 bg-blue-700 hover:bg-blue-800 px-3 py-2 rounded-sm transition-colors"
+                class="text-gray-200 bg-blue-700 px-3 py-2 rounded-sm transition-colors disabled:bg-gray-700 cursor-not-allowed"
+                wire:dirty.remove.class="cursor-not-allowed"
+                wire:dirty.class="hover:bg-blue-800"
+                wire:dirty.remove.attr="disabled"
+                disabled
             >
                 Save
             </button>

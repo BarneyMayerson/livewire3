@@ -1,8 +1,15 @@
 <div class="container mx-auto">
-<h3 class="text-lg text-gray-200 mb-4">Edit Article</h3>
+    <h3 class="text-lg text-gray-200 mb-4">Edit Article</h3>
     <form wire:submit="save">
         <div class="mb-5">
-            <label class="block" for="article-title">Title</label>
+            <label 
+                wire:dirty.class="text-orange-600" 
+                wire:target="form.title" 
+                class="block" 
+                for="article-title"
+            >
+                Title<span wire:dirty wire:target="form.title">*</span>
+            </label>
             <input
                 id="article-title"
                 wire:model="form.title"
@@ -17,7 +24,14 @@
         </div>
 
         <div class="mb-5">
-            <label class="block" for="article-content">Content</label>
+            <label
+                wire:dirty.class="text-orange-600" 
+                wire:target="form.content" 
+                class="block" 
+                for="article-content"
+            >
+                Content<span wire:dirty wire:target="form.content">*</span>
+            </label>
             <textarea
                 id="article-content"
                 wire:model="form.content"
@@ -31,19 +45,30 @@
             </div>
         </div>
         <div class="mb-5">
-            <label class="flex items-center">
+            <label
+                wire:dirty.class="text-orange-600" 
+                wire:target="form.published"  
+                class="flex items-center"
+            >
                 <input 
                     type="checkbox" 
                     wire:model.boolean="form.published"
                     name="published"
                     class="mr-2"
                 >
-                Published
+                Published<span wire:dirty wire:target="form.published">*</span>
             </label>
         </div>
         <div class="mb-5">
             <div>
-                <div class="mb-2">Notification Options</div>
+                <div 
+                    wire:dirty.class="text-orange-600" 
+                    wire:target="form.notifications" 
+                    class="mb-2"
+                >
+                    Notification Options
+                    <span wire:dirty wire:target="form.notifications">*</span>
+                </div>
                 <div class="flex gap-6 mb-3">
                     <label class="flex items-center">
                         <input 
@@ -89,7 +114,11 @@
         <div>
             <button
                 type="submit"
-                class="text-gray-200 bg-blue-700 hover:bg-blue-800 px-3 py-2 rounded-sm transition-colors"
+                class="text-gray-200 bg-blue-700 px-3 py-2 rounded-sm transition-colors disabled:bg-gray-700 cursor-not-allowed"
+                wire:dirty.remove.class="cursor-not-allowed"
+                wire:dirty.class="hover:bg-blue-800"
+                wire:dirty.remove.attr="disabled"
+                disabled
             >
                 Save
             </button>

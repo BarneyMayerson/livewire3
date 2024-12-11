@@ -1,19 +1,33 @@
-<div class="container mx-auto">
-    <div class="mb-6 flex items-center justify-between">
-        <a 
-            href="/dashboard/articles/create" 
-            class="text-gray-200 bg-blue-700 hover:bg-blue-800 px-3 py-2 rounded-sm transition-colors"
+
+<div class="container m-auto mb-4">
+    <div class="mb-3 flex justify-between items-center">
+        <a
+            href="/dashboard/articles/create"
+            class="text-blue-500 hover:text-blue-700"
             wire:navigate
         >
             Create Article
         </a>
-        <div class="text-gray-100">
-            <livewire:published-count>
+        <div>
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-800 rounded-sm"
+                wire:click="showAll()"
+            >
+                Show All
+            </button>
+            <button class="text-gray-200 p-2 bg-blue-700 hover:bg-blue-800 rounded-sm"
+                wire:click="showPublished()"
+            >
+                Show Published (<livewire:published-count placeholder-text="loading" />)
+            </button>
         </div>
+
+
     </div>
-    
+    <div class="my-3">
+        {{$articles->links()}}
+    </div>
     <table class="w-full">
-        <thead class="uppercase text-xs text-gray-400 bg-gray-700">
+        <thead class="text-xs uppercase bg-gray-700 text-gray-400">
             <tr>
                 <th class="px-6 py-2">Title</th>
                 <th class="px-6 py-2">Actions</th>
@@ -21,31 +35,27 @@
         </thead>
         <tbody>
             @foreach ($articles as $article)
-            <tr
-                wire:key="{{ $article->id }}" 
-                class="border-b border-gray-700 bg-gray-800"
-            >
-                <td class="px-6 py-2">
-                    {{ $article->title }}
-                </td>
-                <td class="px-6 py-2 flex justify-center space-x-2">
-                    <a 
-                        href="/dashboard/articles/{{ $article->id }}/edit"
+            <tr wire:key="{{$article->id}}" class="border-b bg-gray-800 border-gray-700">
+                <td class="px-6 py-2">{{$article->title}}</td>
+                <td class="px-6 py-2 text-center">
+                    <a class="text-gray-200 px-3 py-2 hover:bg-gray-900"
+                        href="/dashboard/articles/{{$article->id}}/edit"
                         wire:navigate
-                        class="text-gray-200 bg-blue-700 hover:bg-blue-800 transition-colors rounded-sm px-3 py-1"
                     >
                         Edit
                     </a>
-                    <button 
-                        wire:click="delete({{ $article->id }})"
+                    <button class="text-gray-200 px-2 py-1 bg-red-700 hover:bg-red-800 rounded-sm"
+                        wire:click="delete({{$article->id}})"
                         wire:confirm="Are you sure you want to delete this article?"
-                        class="text-gray-200 bg-red-700 hover:bg-red-800 transition-colors rounded-sm px-3 py-1"
                     >
                         Delete
                     </button>
                 </td>
-            </tr>    
+            </tr>
             @endforeach
         </tbody>
     </table>
+    <div class="mt-3">
+        {{$articles->links()}}
+    </div>
 </div>

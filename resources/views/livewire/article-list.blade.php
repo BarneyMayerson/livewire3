@@ -1,5 +1,5 @@
 <div class="container mx-auto">
-    <div class="mb-6">
+    <div class="mb-6 flex items-center justify-between">
         <a 
             href="/dashboard/articles/create" 
             class="text-gray-200 bg-blue-700 hover:bg-blue-800 px-3 py-2 rounded-sm transition-colors"
@@ -7,7 +7,11 @@
         >
             Create Article
         </a>
+        <div class="text-gray-100">
+            <livewire:published-count>
+        </div>
     </div>
+    
     <table class="w-full">
         <thead class="uppercase text-xs text-gray-400 bg-gray-700">
             <tr>

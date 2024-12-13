@@ -1,4 +1,3 @@
-
 <div class="container m-auto mb-4">
     <div class="mb-3 flex justify-between items-center">
         <a
@@ -24,7 +23,7 @@
 
     </div>
     <div class="my-3">
-        {{$articles->links()}}
+        {{$this->articles->links()}}
     </div>
     <table class="w-full">
         <thead class="text-xs uppercase bg-gray-700 text-gray-400">
@@ -34,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($articles as $article)
+            @foreach ($this->articles as $article)
             <tr wire:key="{{$article->id}}" class="border-b bg-gray-800 border-gray-700">
                 <td class="px-6 py-2">{{$article->title}}</td>
                 <td class="px-6 py-2 text-center">
@@ -56,6 +55,6 @@
         </tbody>
     </table>
     <div class="mt-3">
-        {{$articles->links()}}
+        {{$this->articles->links()}}
     </div>
 </div>

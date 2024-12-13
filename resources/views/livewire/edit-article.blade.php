@@ -1,5 +1,5 @@
 <div class="container mx-auto">
-    <h3 class="text-lg text-gray-200 mb-4">Edit Article</h3>
+    <h3 class="text-lg text-gray-200 mb-4">Edit Article (ID: {{ $form->id }})</h3>
     <form wire:submit="save">
         <div class="mb-5">
             <label 

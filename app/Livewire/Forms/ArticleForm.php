@@ -6,9 +6,12 @@ use App\Models\Article;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use Livewire\WithFileUploads;
 
 class ArticleForm extends Form
 {
+    use WithFileUploads;
+
     public ?Article $article;
 
     #[Locked]
@@ -22,6 +25,11 @@ class ArticleForm extends Form
 
     public $published = false;
 
+    public $photo_path = '';
+
+    #[Validate('image|max:2048')]
+    public $photo;
+
     public $notifications = [];
 
     public $allowNotifications = false;
@@ -33,6 +41,7 @@ class ArticleForm extends Form
         $this->id = $article->id;
         $this->title = $article->title;
         $this->content = $article->content;
+        $this->photo_path = $article->photo_path;
         $this->published = $article->published;
         $this->notifications = $article->notifications ?? [];
         $this->allowNotifications = count($this->notifications) > 0;
@@ -46,7 +55,13 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
-        Article::create($this->only(['title', 'content', 'published', 'notifications']));
+        if ($this->photo) {
+            $this->photo_path = $this->photo->storePublicly('article_photos', [
+                'disk' => 'public',
+            ]);
+        }
+
+        Article::create($this->only(['title', 'content', 'published', 'notifications', 'photo_path']));
 
         cache()->forget('published-count');
     }
@@ -59,7 +74,13 @@ class ArticleForm extends Form
             $this->notifications = [];
         }
 
-        $this->article->update($this->only(['title', 'content', 'published', 'notifications']));
+        if ($this->photo) {
+            $this->photo_path = $this->photo->storePublicly('article_photos', [
+                'disk' => 'public',
+            ]);
+        }
+
+        $this->article->update($this->only(['title', 'content', 'published', 'notifications', 'photo_path']));
 
         cache()->forget('published-count');
     }

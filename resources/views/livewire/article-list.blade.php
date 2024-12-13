@@ -28,11 +28,11 @@
             >
                 Show Published (<livewire:published-count placeholder-text="loading" />)
             </button>
-            
         </div>
-
-
     </div>
+    @if (session('status'))
+    <div class="py-2 text-center text-gray-200 bg-green-700">{{ session('status') }}</div>
+    @endif
     <div class="my-3">
         {{$this->articles->links()}}
     </div>

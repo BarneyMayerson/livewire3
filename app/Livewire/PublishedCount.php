@@ -8,7 +8,7 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-#[Lazy]
+#[Lazy(isolate: false)]
 class PublishedCount extends Component
 {
     public $placeholderText = '';

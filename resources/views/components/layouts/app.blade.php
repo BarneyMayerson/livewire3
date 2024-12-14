@@ -31,7 +31,9 @@
                                 </li>
                             </ul>
                         </div>
-                        <livewire:search placeholder="type something to search">
+                        <div class="w-3/4">
+                            <livewire:search placeholder="type something to search">
+                        </div>
                     </div>
                 </nav>
                 <main class="mt-6">
